@@ -1,16 +1,23 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {CommonPopupService} from 'app/commons';
 
 @Component({
   selector: 'app-first-module-root',
   templateUrl: './first-module-root.component.html'
 })
-export class FirstModuleRootComponent implements OnInit {
+export class FirstModuleRootComponent {
+  private title = 'firstModuleTitle';
+  private content = 'firstModuleConter';
+  private fotter = 'firstModuleFooter';
 
   constructor(private commonsPopup: CommonPopupService) {
-    console.log('commonsPopup', commonsPopup);
   }
 
-  ngOnInit() {}
+  openPopup() {
+    this.commonsPopup.setPopupData({
+      title: this.title,
+      content: this.content,
+      footer: this.fotter});
+  }
 
 }
