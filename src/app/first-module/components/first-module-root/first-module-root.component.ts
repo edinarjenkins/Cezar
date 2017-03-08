@@ -7,8 +7,8 @@ import {CommonPopupService} from 'app/commons';
 })
 export class FirstModuleRootComponent {
   private title = 'firstModuleTitle';
-  private content = 'firstModuleConter';
-  private fotter = 'firstModuleFooter';
+  private content = `<h1>firstModuleContent<h1>`;
+  private footer = 'firstModuleFooter';
 
   constructor(private commonsPopup: CommonPopupService) {
   }
@@ -17,7 +17,7 @@ export class FirstModuleRootComponent {
     this.commonsPopup.setPopupData({
       title: this.title,
       content: this.content,
-      footer: this.fotter});
+      footer: this.footer});
   }
 
 }
