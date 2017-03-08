@@ -1,0 +1,23 @@
+$verticalPadding : 10px;
+
+.common-popup-outer-wrapper{
+  position: absolute;
+  overflow: hidden;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(204, 204, 204, 0.81);
+}
+
+.common-popup-inner-wrapper{
+  background: white;
+  padding-top: $verticalPadding;
+  padding-bottom: $verticalPadding;
+}
+.common-popup-wrapper{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
