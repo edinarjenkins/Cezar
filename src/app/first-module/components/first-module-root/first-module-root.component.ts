@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {CommonPopupService} from 'app/commons';
 
 @Component({
   selector: 'app-first-module-root',
@@ -6,7 +7,9 @@ import {Component, OnInit} from '@angular/core';
 })
 export class FirstModuleRootComponent implements OnInit {
 
-  constructor() { }
+  constructor(private commonsPopup: CommonPopupService) {
+    console.log('commonsPopup', commonsPopup);
+  }
 
   ngOnInit() {}
 

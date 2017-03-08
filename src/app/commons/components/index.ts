@@ -1,1 +1,1 @@
-export {CommonPopupComponent} from './common-popup';
+export {CommonPopupComponent, CommonPopupService} from './common-popup';
