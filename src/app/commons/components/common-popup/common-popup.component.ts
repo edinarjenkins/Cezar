@@ -1,12 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, AfterViewInit} from '@angular/core';
 import {CommonPopupService} from './common-popup.service';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-common-popup',
-  templateUrl: './common-popup.component.html'
+  templateUrl: './common-popup.component.html',
+  styleUrls: ['./common-popup.component.scss']
 })
-export class CommonPopupComponent implements OnInit {
+export class CommonPopupComponent implements AfterViewInit {
+
   public showPopup;
   public disabledSubmit;
   public title = '';
@@ -15,7 +17,7 @@ export class CommonPopupComponent implements OnInit {
 
   constructor(private sanitizer: DomSanitizer, private comPopupService: CommonPopupService) {}
 
-  ngOnInit() {
+  ngAfterViewInit(): void {
     this.comPopupService.pushData.subscribe( () => {
       const {title, content, footer, disabledSubmit } = this.comPopupService;
       this.title = title;
