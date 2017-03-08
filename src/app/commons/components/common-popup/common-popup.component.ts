@@ -7,6 +7,8 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
   templateUrl: './common-popup.component.html'
 })
 export class CommonPopupComponent implements OnInit {
+  public showPopup;
+  public disabledSubmit;
   public title = '';
   public content: SafeHtml;
   public footer = '';
@@ -14,11 +16,25 @@ export class CommonPopupComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer, private comPopupService: CommonPopupService) {}
 
   ngOnInit() {
-    this.comPopupService.eventEmitter.subscribe( () => {
-      this.title = this.comPopupService.title;
-      this.content = this.sanitizer.bypassSecurityTrustHtml(this.comPopupService.content);
-      this.footer = this.comPopupService.footer;
+    this.comPopupService.pushData.subscribe( () => {
+      const {title, content, footer, disabledSubmit } = this.comPopupService;
+      this.title = title;
+      this.content = this.sanitizer.bypassSecurityTrustHtml(content);
+      this.footer = footer;
+      this.disabledSubmit = disabledSubmit;
+      this.showPopup = true;
     });
+
+    this.comPopupService.removeData.subscribe( () => {
+      this.showPopup = false;
+      this.title = '';
+      this.content = '';
+      this.footer = '';
+    });
+  }
+
+  closePopup() {
+   this.comPopupService.destroyData();
   }
 
 }

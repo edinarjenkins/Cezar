@@ -1,26 +1,14 @@
 import {Injectable, EventEmitter} from '@angular/core';
 
-interface ICommontPopupItem {
-  title: string;
-  content: string;
-  footer: string;
-};
 
 @Injectable()
 abstract class AbstractCommonPopupService {
-  public eventEmitter = new EventEmitter<any>();
-  private _title = 'unknown title';
-  private _content = 'unknown content';
-  private _footer = 'unknown footer';
-
-  public setPopupData(popupItem: ICommontPopupItem) {
-
-    const {title, content, footer} = popupItem;
-    this.title = title;
-    this.content = content;
-    this.footer = footer;
-    this.eventEmitter.emit('change service');
-  }
+  public pushData = new EventEmitter<any>();
+  public removeData = new EventEmitter<any>();
+  private _disabledSubmit: boolean;
+  private _title = '';
+  private _content = '';
+  private _footer = '';
 
   set title(value: string) {
     this._title = value;
@@ -48,6 +36,14 @@ abstract class AbstractCommonPopupService {
     return this._footer;
   }
 
+  get disabledSubmit(): boolean {
+    return this._disabledSubmit;
+  }
+
+  set disabledSubmit(value: boolean) {
+    this._disabledSubmit = value;
+  }
+
 }
 
 @Injectable()
@@ -56,4 +52,34 @@ export class CommonPopupService extends AbstractCommonPopupService {
     super();
   }
 
+  setTitle(title) {
+    this.title = title;
+    this.pushData.emit('change service');
+    return this;
+  }
+  setContent(content) {
+    this.content = content;
+    this.pushData.emit('change service');
+    return this;
+  }
+
+  setFooter(footer) {
+    this.footer = footer;
+    this.pushData.emit('change service');
+    return this;
+  }
+
+  setDisabledSubmit(disabledSubmit) {
+    this.disabledSubmit = disabledSubmit;
+    this.pushData.emit('change service');
+    return this;
+  }
+
+  destroyData() {
+    this.title = '';
+    this.content = '';
+    this.footer = '';
+
+    this.removeData.emit('remove data');
+  }
 }

@@ -14,10 +14,11 @@ export class FirstModuleRootComponent {
   }
 
   openPopup() {
-    this.commonsPopup.setPopupData({
-      title: this.title,
-      content: this.content,
-      footer: this.footer});
+    this.commonsPopup
+      .setTitle(this.title)
+      .setContent(this.content)
+      .setFooter(this.footer)
+      .setDisabledSubmit(true);
   }
 
 }
