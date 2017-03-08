@@ -4,18 +4,22 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
+
 import {CommonsModule} from './commons';
+import {FirstModuleModule} from './first-module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
 
-    CommonsModule
+    CommonsModule,
+
+    FirstModuleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
